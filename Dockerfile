@@ -22,7 +22,6 @@ RUN wget --progress=bar:force https://artifacts.elastic.co/downloads/elasticsear
 
 RUN set -ex && for esdirs in config data logs; do \
         mkdir -p "$esdirs"; \
-        chown -R elasticsearch:elasticsearch "$esdirs"; \
     done
 
 USER elasticsearch
@@ -31,9 +30,7 @@ COPY log4j2.properties config/
 COPY bin/es-docker bin/es-docker
 
 USER root
-RUN chown elasticsearch:elasticsearch \
-      config/log4j2.properties \
-      bin/es-docker && \
+RUN chown -R elasticsearch:elasticsearch /usr/share/elasticsearch && \
     chmod 0750 bin/es-docker
 
 USER elasticsearch
