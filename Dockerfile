@@ -2,6 +2,8 @@ FROM centos:7
 LABEL maintainer zion
 
 ENV ELASTIC_VERSION 5.5.0
+ENV UUID 449
+ENV GUID 449
 
 ENV ELASTIC_CONTAINER true
 ENV PATH /usr/share/elasticsearch/bin:$PATH
@@ -9,7 +11,7 @@ ENV JAVA_HOME /usr/lib/jvm/jre-1.8.0-openjdk
 
 RUN yum update -y && yum install -y java-1.8.0-openjdk-headless wget which && yum clean all
 
-RUN groupadd -g 1000 elasticsearch && adduser -u 1000 -g 1000 -d /usr/share/elasticsearch elasticsearch
+RUN groupadd -g ${GUID} elasticsearch && adduser -u ${UUID} -g ${GUID} -d /usr/share/elasticsearch elasticsearch
 
 WORKDIR /usr/share/elasticsearch
 
