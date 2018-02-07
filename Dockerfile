@@ -9,7 +9,7 @@ ENV ELASTIC_CONTAINER true
 ENV PATH /usr/share/elasticsearch/bin:$PATH
 ENV JAVA_HOME /usr/lib/jvm/jre-1.8.0-openjdk
 
-RUN yum update -y && yum install -y java-1.8.0-openjdk-headless wget which && yum clean all
+RUN yum update -y && yum install -y java-1.8.0-openjdk-headless wget which
 
 RUN groupadd -g ${GUID} elasticsearch && adduser -u ${UUID} -g ${GUID} -d /usr/share/elasticsearch elasticsearch
 
